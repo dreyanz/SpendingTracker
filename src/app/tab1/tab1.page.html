@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      My Spending Tracker
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,38 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">My Spending Tracker</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-grid>
+    <ion-row class="ion-padding-end">
+      <ion-col size="10">
+        <ion-item>
+          <ion-label>Spending</ion-label>
+          <ion-input type="number" placeholder="Enter spending" [(ngModel)]="amount"></ion-input>
+        </ion-item>
+      </ion-col>
+      
+      <ion-col size="2" >
+        <ion-button fill="solid" (click)="openDetails()">ADD</ion-button>
+      </ion-col>
+
+
+    </ion-row>
+    
+  </ion-grid>
+
+  <ion-card *ngFor="let spending of spendingArr">
+    <ion-card-header>
+      <ion-card-title>{{ spending.category }}</ion-card-title>
+      <ion-card-subtitle>P{{ spending.amount }}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{ spending.notes }}
+    </ion-card-content>
+  </ion-card>
+  
+  
 </ion-content>

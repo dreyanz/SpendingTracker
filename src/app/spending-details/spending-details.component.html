@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Spending Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <!-- <ion-item>
+    <ion-label position="stacked">Your name</ion-label>
+    <ion-input [(ngModel)]="name" placeholder="Your name"></ion-input>
+  </ion-item> -->
+  <ion-button (click)="categorySelected('Food')">
+    <ion-icon name="fast-food-outline"></ion-icon>
+    Food
+  </ion-button>
+  <ion-button (click)="categorySelected('Gas')">
+    <ion-icon name="airplane-outline"></ion-icon>
+    Gas
+  </ion-button>
+  <ion-button (click)="categorySelected('Other')">
+    <ion-icon name="reader-outline"></ion-icon>
+    Other
+  </ion-button>
+
+  <ion-item class="ion-padding-top">
+    <ion-label position="stacked">Notes</ion-label>
+    <ion-input placeholder="Enter Notes" [(ngModel)]="notes"></ion-input>
+  </ion-item>
+
+
+  
+</ion-content>
