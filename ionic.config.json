@@ -1,0 +1,7 @@
+{
+  "name": "Spending Tracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
