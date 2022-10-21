@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { LocalStorageService } from '../local-storage.service';
 import { Spending } from '../models/spending';
-import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-spending-details',
@@ -17,7 +17,8 @@ export class SpendingDetailsComponent implements OnInit {
 
   spendingArray : Spending[] = []
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, 
+    private localStorage : LocalStorageService) {}
 
   ngOnInit(): void {
     console.log("on init")
@@ -30,10 +31,10 @@ export class SpendingDetailsComponent implements OnInit {
 
   async confirm() {
     
-    let value = await Preferences.get({ key: 'spending-tracker' });
+    let value = await this.localStorage.getEntries()
 
     if (value.value != null) {
-    this.spendingArray = JSON.parse(value.value)
+      this.spendingArray = JSON.parse(value.value)
     }
     
     console.log("notes "+this.notes)
@@ -47,11 +48,7 @@ export class SpendingDetailsComponent implements OnInit {
       this.spendingArray.push(spending)
     }
     
-
-    await Preferences.set({
-      key: "spending-tracker",
-      value: JSON.stringify(this.spendingArray)
-    })
+    this.localStorage.saveData(this.spendingArray)
 
     console.log(`spending info ${JSON.stringify(this.spendingArray)}`)
 

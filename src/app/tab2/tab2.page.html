@@ -13,5 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-button fill="solid" (click)="callGetApi()">API CALL</ion-button>
+  <ion-button fill="solid" (click)="callPostApi()">POST API CALL</ion-button>
+  <ion-button fill="solid" (click)="callPutApi()">PUT API CALL</ion-button>
+  <ion-button fill="solid" (click)="callDeleteApi()">Delete API CALL</ion-button>
+
+  <p>User Count {{ count }}</p>
 </ion-content>

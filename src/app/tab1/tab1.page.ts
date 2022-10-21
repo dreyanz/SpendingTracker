@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Preferences } from '@capacitor/preferences';
 import { ModalController } from '@ionic/angular';
+import { LocalStorageService } from '../local-storage.service';
 import { Spending } from '../models/spending';
+import { SampleServiceService } from '../sample-service.service';
 import { SpendingDetailsComponent } from '../spending-details/spending-details.component';
 
 @Component({
@@ -14,7 +15,8 @@ export class Tab1Page implements OnInit {
   amount = 0
   spendingArr : Spending[] = []
 
-  constructor(private modalController : ModalController) {}
+  constructor(private modalController : ModalController,
+      private localStorage : LocalStorageService) {}
   
   ngOnInit(): void {
     console.log("on init")
@@ -25,9 +27,11 @@ export class Tab1Page implements OnInit {
   async getEntries() {
    
     console.log("getEntries")
-    let value = await Preferences.get({ key: 'spending-tracker' });
+    //let value = await Preferences.get({ key: 'spending-tracker' });
+    //this.spendingArr = JSON.parse(value.value)
+    //console.log("arr "+JSON.stringify(this.spendingArr))
+    let value = await this.localStorage.getEntries()
     this.spendingArr = JSON.parse(value.value)
-    console.log("arr "+JSON.stringify(this.spendingArr))
   }
 
   async openDetails(){
